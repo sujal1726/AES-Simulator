@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AES Studio | Encryption Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">⌘</span>
+            AES<span>Studio</span>
+        </div>
+
+        <p class="menu-title">WORKSPACE</p>
+
+        <a href="#home" class="nav active">⌂ Dashboard</a>
+        <a href="#encryption" class="nav">↗ Encryption</a>
+        <a href="#decryption" class="nav">↙ Decryption</a>
+        <a href="#learning" class="nav">◈ AES Learning</a>
+
+        <div class="sidebar-bottom">
+            <div class="security-box">
+                <div class="security-icon">✓</div>
+                <h4>Secure Workspace</h4>
+                <p>Your encryption runs locally in your browser.</p>
+            </div>
+            <p class="version">AES STUDIO v1.0</p>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">WORKSPACE / DASHBOARD</p>
+                <h2>Encryption Dashboard</h2>
+            </div>
+            <div class="top-status">
+                <span class="live-dot"></span>
+                SYSTEM READY
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="tag">CRYPTOGRAPHY SIMULATOR</span>
+                <h1>Protect Your Data.<br>
+                    <span>Understand Encryption.</span>
+                </h1>
+                <p>
+                    Explore the power of Advanced Encryption Standard.
+                    Encrypt, decrypt and understand how your data is protected.
+                </p>
+                <a href="#encryption" class="hero-btn">
+                    Start Encrypting →
+                </a>
+            </div>
+
+            <div class="hero-art">
+                <div class="outer-circle">
+                    <div class="inner-circle">
+                        <div class="lock">♙</div>
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                    </div>
+                </div>
+                <p>AES • SECURE • ENCRYPTED</p>
+            </div>
+        </section>
+
+        <!-- INFO CARDS -->
+        <section class="stats">
+            <div class="stat-card">
+                <span>ENCRYPTION TYPE</span>
+                <h2>Symmetric</h2>
+                <p>Same key for encryption and decryption</p>
+            </div>
+
+            <div class="stat-card">
+                <span>SUPPORTED KEY SIZES</span>
+                <h2>128 / 192 / 256</h2>
+                <p>Bits of encryption key length</p>
+            </div>
+
+            <div class="stat-card">
+                <span>ALGORITHM</span>
+                <h2>AES-GCM</h2>
+                <p>Encryption with authentication</p>
+            </div>
+        </section>
+
+        <!-- KEY SECTION -->
+        <section class="panel" id="encryption">
+            <div class="section-heading">
+                <div>
+                    <span class="number">01 / KEY MANAGEMENT</span>
+                    <h2>Generate Encryption Key</h2>
+                    <p>Choose an AES key size and generate your secret key.</p>
+                </div>
+                <span class="section-icon">🔑</span>
+            </div>
+
+            <label>Select AES Key Size</label>
+            <select id="aesType">
+                <option value="128">AES-128</option>
+                <option value="192">AES-192</option>
+                <option value="256">AES-256</option>
+            </select>
+
+            <button onclick="generateKey()" class="primary-btn">
+                ✦ Generate Secure Key
+            </button>
+
+            <label>Your Secret Key</label>
+            <input type="text" id="key"
+                placeholder="Your generated key will appear here">
+
+            <button class="outline-btn" onclick="copyText('key')">
+                Copy Key
+            </button>
+        </section>
+
+        <!-- TWO COLUMN ENCRYPTION/DECRYPTION -->
+        <div class="crypto-grid">
+
+            <section class="panel" id="encrypt-panel">
+                <div class="section-heading">
+                    <div>
+                        <span class="number">02 / ENCRYPTION</span>
+                        <h2>Plaintext → Ciphertext</h2>
+                    </div>
+                    <span class="section-icon">🔒</span>
+                </div>
+
+                <label>Enter Your Message</label>
+                <textarea id="plainText"
+                    placeholder="Type your secret message here..."></textarea>
+
+                <button onclick="encryptText()" class="primary-btn full">
+                    Encrypt Message →
+                </button>
+
+                <label>Encrypted Output</label>
+                <textarea id="cipherText"
+                    placeholder="Encrypted output will appear here..."
+                    readonly></textarea>
+
+                <button class="outline-btn"
+                    onclick="copyText('cipherText')">
+                    Copy Ciphertext
+                </button>
+            </section>
+
+            <section class="panel" id="decryption">
+                <div class="section-heading">
+                    <div>
+                        <span class="number">03 / DECRYPTION</span>
+                        <h2>Ciphertext → Plaintext</h2>
+                    </div>
+                    <span class="section-icon">🔓</span>
+                </div>
+
+                <label>Enter Ciphertext</label>
+                <textarea id="decryptInput"
+                    placeholder="Paste your encrypted message here..."></textarea>
+
+                <button onclick="decryptText()" class="success-btn full">
+                    Decrypt Message →
+                </button>
+
+                <label>Original Message</label>
+                <textarea id="decryptedText"
+                    placeholder="Decrypted message will appear here..."
+                    readonly></textarea>
+
+                <button class="outline-btn"
+                    onclick="copyText('decryptedText')">
+                    Copy Plaintext
+                </button>
+            </section>
+
+        </div>
+
+        <!-- AES LEARNING -->
+        <section class="panel learning" id="learning">
+            <div class="section-heading">
+                <div>
+                    <span class="number">04 / LEARNING CENTER</span>
+                    <h2>Inside the AES Algorithm</h2>
+                    <p>Explore the four core transformations used in AES rounds.</p>
+                </div>
+                <span class="section-icon">⚙</span>
+            </div>
+
+            <div class="steps">
+                <div class="step active" id="step1">
+                    <span>01</span>
+                    <h3>SubBytes</h3>
+                    <p>Byte substitution using the S-Box.</p>
+                </div>
+
+                <div class="step" id="step2">
+                    <span>02</span>
+                    <h3>ShiftRows</h3>
+                    <p>Rows are shifted by different positions.</p>
+                </div>
+
+                <div class="step" id="step3">
+                    <span>03</span>
+                    <h3>MixColumns</h3>
+                    <p>Columns undergo mathematical transformation.</p>
+                </div>
+
+                <div class="step" id="step4">
+                    <span>04</span>
+                    <h3>AddRoundKey</h3>
+                    <p>State is combined with the round key using XOR.</p>
+                </div>
+            </div>
+
+            <div class="step-controls">
+                <button onclick="resetSteps()" class="outline-btn">
+                    ↺ Restart
+                </button>
+                <button onclick="nextStep()" class="primary-btn">
+                    Next Step →
+                </button>
+            </div>
+
+            <div class="step-description" id="stepInfo">
+                Step 1: SubBytes operation
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>AES STUDIO © 2026 | Educational Cryptography Simulator</p>
+            <button onclick="resetAll()" class="reset-btn">
+                ↺ Reset Simulator
+            </button>
+        </footer>
+
+        <p id="message"></p>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
